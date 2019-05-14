@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "minutes",
   "version": "1.0.0",
   "main": "./public/App.js",
   "scripts": {
@@ -10,18 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "core-js": "^3.0.1",
-    "draft-js": "^0.11.0-beta",
-    "immutable": "~3.7.4",
-    "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.3.1",
     "react": "^16.8.6",
-    "react-contenteditable": "^3.2.6",
-    "react-dom": "^16.8.6",
-    "redux": "^4.0.1"
+    "react-dom": "^16.8.6"
   },
   "description": "",
   "devDependencies": {
-    "@types/draft-js": "^0.10.30",
     "@types/node": "^12.0.2",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
