@@ -1,10 +1,10 @@
 {
   "name": "",
   "version": "1.0.0",
-  "main": "compiled/bundle.js",
+  "main": "./public/App.js",
   "scripts": {
     "dev": "webpack -d --watch",
-    "build": "webpack -p"
+    "prod": "webpack -p"
   },
   "author": "",
   "license": "ISC",
