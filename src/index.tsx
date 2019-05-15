@@ -7,7 +7,6 @@ import Hello from './my-module'
 
 class App extends React.Component {
 	render() {
-		console.log("HELLO THREE")
 		return <Hello />;
 	}
 }
