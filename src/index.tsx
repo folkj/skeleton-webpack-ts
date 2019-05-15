@@ -3,11 +3,12 @@ import 'core-js'
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Hello from './my-module'
+import getMyString from './my-module/jsFileDemo'
 
 
 class App extends React.Component {
 	render() {
-		return <Hello />;
+		return getMyString("hello");
 	}
 }
 
