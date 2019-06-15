@@ -2,8 +2,7 @@ const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
 	entry: {
-		Editor: "./src/index.tsx",
-		Home: "./Homepage/index.tsx"
+		entry: "./src/index.tsx"
 	},
 	output: {
 		filename: "[name].bundle.js",

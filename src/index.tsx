@@ -2,13 +2,12 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Hello from './my-module'
-import getMyString from './my-module/jsFileDemo'
+import MyComponent from './my-module'
 
 
 class App extends React.Component {
 	render() {
-		return getMyString("hello");
+		return <MyComponent />
 	}
 }
 
