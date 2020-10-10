@@ -1,43 +1,82 @@
-const path = require('path');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-module.exports = {
-	entry: {
-		entry: "./src/index.tsx"
-	},
-	output: {
-		filename: "[name].bundle.js",
-		path: path.resolve(__dirname, "public")
-	},
+const path = require("path");
+const nodeExternals = require("webpack-node-externals");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const webpack = require("webpack");
 
-	resolve: {
-		// Add `.ts` and `.tsx` as a resolvable extension.
-		extensions: [".ts", ".tsx", ".js", ".jsx"]
-	},
+const common_settings = {
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+  },
 
-	// plugins: [
-	// 	new BundleAnalyzerPlugin()
-	// ],
-	
-	module: {
-		rules: [
-			{
-				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'url-loader'
-			},
-			{ test: /\.png$/, loader: "url-loader?mimetype=image/png" },
-			{ test: /\.tsx?$/, loader: "ts-loader" },
-			{ test: /\.css$/, use: ["style-loader", "css-loader"] },
-			{
-				test: /\.jsx?$/,
-				exclude: [/node_modules/],
-				use: [{
-					loader: 'babel-loader',
-					options: {
-						presets: ["@babel/preset-env", "@babel/preset-react"]
-					}
-				}],
-				
-			}
-		]
-	}
-}
+  module: {
+    rules: [
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url-loader",
+      },
+      { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
+      { test: /\.tsx?$/, loader: "ts-loader" },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.jsx?$/,
+        exclude: [/node_modules/],
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+
+module.exports = [
+  /// Server entry & settings
+  {
+    target: "node",
+    entry: {
+      "server.bundle": "./src/server/index.ts",
+    },
+    output: {
+      filename: "[name].js",
+      path: path.resolve(__dirname),
+    },
+
+    node: {
+      fs: "empty",
+      crypto: "empty",
+      net: "empty",
+      tls: "empty",
+      __dirname: false,
+    },
+
+    externals: [nodeExternals()],
+
+    ...common_settings,
+  },
+  /// Client
+  {
+    entry: {
+      "client.bundle": "./src/client/index.tsx",
+    },
+
+    output: {
+      filename: "[name].js?[hash]",
+      path: __dirname + "/public",
+      publicPath: "/public",
+    },
+
+    plugins: [
+      new HtmlWebpackPlugin({
+        chunks: ["client.bundle"],
+        filename: path.resolve(__dirname, "public", `client.html`),
+        template: "./src/HtmlTemplate/template.html",
+      }),
+    ],
+
+    ...common_settings,
+  },
+];
