@@ -14,7 +14,11 @@ const common_settings = {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: "url-loader",
       },
-      { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
+      {
+        test: /\.png$/,
+        loader: "url-loader",
+        options: { mimetype: "image/png" },
+      },
       { test: /\.tsx?$/, loader: "ts-loader" },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       {
@@ -45,11 +49,16 @@ module.exports = [
       path: path.resolve(__dirname),
     },
 
+    resolve: {
+      fallback: {
+        fs: false,
+        crypto: false,
+        net: false,
+        tls: false,
+      },
+    },
+
     node: {
-      fs: "empty",
-      crypto: "empty",
-      net: "empty",
-      tls: "empty",
       __dirname: false,
     },
 
@@ -64,7 +73,7 @@ module.exports = [
     },
 
     output: {
-      filename: "[name].js?[hash]",
+      filename: "[name].js?[fullhash]",
       path: __dirname + "/public",
       publicPath: "/public",
     },
