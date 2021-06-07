@@ -74,7 +74,7 @@ module.exports = [
 
     output: {
       filename: "[name].js?[fullhash]",
-      path: `${__dirname}/public`,
+      path: `${__dirname}/public`, 
       publicPath: "/public",
     },
 
