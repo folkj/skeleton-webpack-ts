@@ -1,5 +1,5 @@
 {
-  "name": "nyt",
+  "name": "typescript-template",
   "version": "1.0.0",
   "main": "./public/App.js",
   "scripts": {
