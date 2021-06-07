@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "./public/App.js",
   "scripts": {
-    "dev": "webpack -d --watch",
-    "prod": "webpack -p",
-    "start": "node server.bundle.js"
+    "dev": "webpack --mode development --watch",
+    "prod": "webpack --mode production",
+    "start": "node private/server.bundle.js"
   },
   "author": "",
   "license": "ISC",
