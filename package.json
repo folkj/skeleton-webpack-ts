@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "webpack --mode development --watch",
     "prod": "webpack --mode production",
+    "build": "webpack --mode production",
     "start": "node private/server.bundle.js"
   },
   "author": "",
