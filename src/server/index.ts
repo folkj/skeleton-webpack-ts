@@ -12,12 +12,9 @@ app.use(bodyParser.json());
 app.use("/public", express.static("public"));
 
 app.get("/", (req, res, next) => {
-  res.sendFile(__dirname + "/public/client.html");
+  res.sendFile("client.html", { root: path.join(__dirname, "../public") });
 });
 
-app.get("/item/:itemKey", (req, res, next) => {
-  res.sendFile(__dirname + "/public/client.html");
-});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
